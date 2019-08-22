@@ -23,33 +23,32 @@
 </div>
 
 <?php
-$servername = "localhost:3306";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "tsuvaon";
  
-$days=$_POST["days"]
- 
 // 创建连接
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
+$conn = mysqli_connect($servername, $username, $password,$dbname);
+ 
+// 检测连接
 if (!$conn) {
-    die("连接失败: " . mysqli_connect_error());
+    die("Connection failed: " . mysqli_connect_error());
 }
+
+
+$sql = "SELECT * FROM rentLog";
+$result = $conn->query($sql);
  
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
-$result = mysqli_query($conn, $sql);
- 
-if (mysqli_num_rows($result) > 0) {
+if ($result->num_rows > 0) {
     // 输出数据
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "ID: " . $row["ID"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - 地址: " . $row["address"]."<br>";
     }
 } else {
-    echo "没有要收租的房子。";
+    echo "0 结果";
 }
- 
-mysqli_close($conn);
+
 ?>
 
 
