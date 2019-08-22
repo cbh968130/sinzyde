@@ -1,0 +1,27 @@
+create table rentLog(
+id int unsigned auto_increment,
+startDate date,
+endDate date,
+address varchar(100),
+ownerName varchar(10),
+tenantName varchar(10),
+ownerPhone varchar(20),
+tenantPhone varchar(20),
+months int,
+price int,
+remark text,
+nextDate date,
+primary key (id))
+engine=InnoDB default charset=utf8;
+
+insert into rentLog (startDate) values ('2019-08-04');
+
+2020-02-04，
+"徐治萍",
+"张惠峰",
+15352390912,
+13017761579,
+3,
+3900,
+2019-11-03,
+"代收水193电3017");
